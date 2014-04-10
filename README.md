@@ -1,24 +1,34 @@
 # UnicornService
 
-TODO: Write a gem description
+Capistrano plugin that provide opportunity to create unicorn service. It gives capistrano task for create script in
+/etc/init.d/ for unicorn's deamon and update rc.d for auto start up unicorn application after reboot system
 
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'unicorn_service'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install unicorn_service
 
 ## Usage
+### Setup
 
-TODO: Write usage instructions here
+Add the library to your Gemfile:
+
+    group :development do
+      gem 'unicorn_service', :require => false
+    end
+
+And load it into your deployment script config/deploy.rb:
+
+    require 'unicorn_service'
+
+Set constants:
+
+    set :application, 'your_application'
+    set :user, 'your_user'
+    set :deploy_to, '/path/to/app'
+
+###Run
+
+For create deamon and update rc.d run:
+
+    bundle exec cap unicorn_service:create_script
+
 
 ## Contributing
 

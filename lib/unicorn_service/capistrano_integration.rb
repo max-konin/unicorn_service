@@ -20,7 +20,6 @@ module UnicornService
           unless not_seted.empty?
             fail "Necessary constants have not been initialized: #{not_seted.inject(''){|s, item| s + "#{item}; " }}"
           end
-          # fail "Should set 'use_sudo' as true" unless fetch(:use_sudo, false)
         end
 
         extend Utility

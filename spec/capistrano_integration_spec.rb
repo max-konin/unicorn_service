@@ -9,7 +9,6 @@ describe UnicornService::CapistranoIntegration do
     @configuration.set :application, 'myapp'
     @configuration.set :user,        'myuser'
     @configuration.set :deploy_to,   '/path/to/deploy'
-    # @configuration.set :use_sudo,    true
   end
 
   it "defines unicorn_service:create_script" do
