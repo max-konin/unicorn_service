@@ -20,7 +20,7 @@ module UnicornService
           unless not_seted.empty?
             fail "Necessary constants have not been initialized: #{not_seted.inject(''){|s, item| s + "#{item}; " }}"
           end
-          fail "Should set 'use_sudo' as true" unless fetch(:use_sudo, false)
+          # fail "Should set 'use_sudo' as true" unless fetch(:use_sudo, false)
         end
 
         extend Utility
@@ -28,13 +28,13 @@ module UnicornService
         namespace :unicorn_service do
           desc 'Add script in /etc/init.d'
           task :create_script do
-            run "echo #{create_initd_file(deploy_to, user)} > /etc/init.d/unicorn.#{application}"
-            run "chmod +x /etc/init.d/unicorn.#{application}"
+            put_sudo (create_initd_file deploy_to, user), "/etc/init.d/unicorn.#{application}"
+            run "#{sudo} chmod +x /etc/init.d/unicorn.#{application}"
           end
 
           desc 'Update rc.d'
           task :update_rc do
-            run "update-rc.d unicorn.#{application} defaults"
+            run "#{sudo} update-rc.d unicorn.#{application} defaults"
           end
 
           desc 'start service'

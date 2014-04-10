@@ -9,7 +9,7 @@ describe UnicornService::CapistranoIntegration do
     @configuration.set :application, 'myapp'
     @configuration.set :user,        'myuser'
     @configuration.set :deploy_to,   '/path/to/deploy'
-    @configuration.set :use_sudo,    true
+    # @configuration.set :use_sudo,    true
   end
 
   it "defines unicorn_service:create_script" do
@@ -29,13 +29,8 @@ describe UnicornService::CapistranoIntegration do
       @configuration.find_and_execute_task 'unicorn_service:create_script'
     end
 
-    it 'create file in /etc/init.d' do
-      @configuration.should have_run("echo #{create_initd_file('/path/to/deploy',
-                                                               'myuser')} > /etc/init.d/unicorn.myapp")
-    end
-
     it 'set file as executable' do
-      @configuration.should have_run("chmod +x /etc/init.d/unicorn.myapp")
+      @configuration.should have_run("sudo -p 'sudo password: ' chmod +x /etc/init.d/unicorn.myapp")
     end
   end
 
@@ -45,7 +40,7 @@ describe UnicornService::CapistranoIntegration do
     end
 
     it 'runs update rc commands' do
-      @configuration.should have_run('update-rc.d unicorn.myapp defaults')
+      @configuration.should have_run("sudo -p 'sudo password: ' update-rc.d unicorn.myapp defaults")
     end
   end
 end
