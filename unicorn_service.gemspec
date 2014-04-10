@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = UnicornService::VERSION
   spec.authors       = ["max-konin"]
   spec.email         = ["mk@kernel-corp.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Create unicorn service on linux server through capistrano.}
+  spec.description   = %q{Capistrano plugin that provide opportunity to create unicorn service for autostart unicorn }
+  spec.homepage      = "https://github.com/max-konin/unicorn_service.git"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
