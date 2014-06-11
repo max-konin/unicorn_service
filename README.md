@@ -27,7 +27,7 @@ Set constants:
 
 For create deamon and update rc.d run:
 
-    bundle exec cap unicorn_service:create_script
+    bundle exec cap unicorn_service:start
 
 
 ## Contributing
